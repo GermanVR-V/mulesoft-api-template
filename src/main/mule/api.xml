@@ -1,0 +1,8 @@
+<mule xmlns="http://www.mulesoft.org/schema/mule/core"
+      xmlns:api="http://www.mulesoft.org/schema/mule/api"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="
+        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+        http://www.mulesoft.org/schema/mule/api http://www.mulesoft.org/schema/mule/api/current/mule-api.xsd">
+  <api:router raml="exchange-module:api.raml"/>
+</mule>

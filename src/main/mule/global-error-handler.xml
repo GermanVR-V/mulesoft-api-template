@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xsi:schemaLocation="
+          http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+      
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+
+	<error-handler name="global-error-handler"
+		doc:id="d063f9f3-685c-4f1b-b3c2-2a8f1d4242a6">
+		<on-error-continue enableNotifications="true"
+			logException="true" type="ANY">
+
+			<ee:transform
+				doc:name="Setting Error Payload and httpStatus"
+				doc:id="14dcd659-b9bd-4698-a319-4a2dbb4c0088">
+				<ee:message>
+					<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"error": "Internal Server Error",
+	"type": error.errorType.identifier default "UNKNOWN",
+	"timestamp": now() as String {
+		format: "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+	},
+	"correlationId": attributes.headers['X-Correlation-ID'] default vars.correlationId
+}]]></ee:set-payload>
+				</ee:message>
+				<ee:variables>
+					<ee:set-variable variableName="httpStatus"><![CDATA[if (error.errorType.namespace == 'HTTP') 500 else 500]]></ee:set-variable>
+				</ee:variables>
+			</ee:transform>
+			<logger level="ERROR" doc:name="Log Error"
+				message="Global Error Handled: #[payload]" />
+		</on-error-continue>
+	</error-handler>
+
+</mule>

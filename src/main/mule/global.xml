@@ -1,0 +1,14 @@
+<mule xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd">
+	<configuration-properties
+		file="config/${env}-config.yaml" />
+	<secure-properties:config
+		name="Secure_Properties_Config" doc:name="Secure Properties Config"
+		doc:id="8918e5a8-27cb-43b5-bfb7-c8cd37f2f969"
+		file="config/${env}-secure-config.yaml" key="${secret.key}" />
+
+</mule>

@@ -1,0 +1,7 @@
+<mule xmlns="http://www.mulesoft.org/schema/mule/core"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+  <sub-flow name="orchestrator-subflow">
+    <flow-ref name="client-subflow"/>
+  </sub-flow>
+</mule>
