@@ -8,7 +8,7 @@
 	<version>1.0.0</version>
 	<packaging>mule-application</packaging>
 
-	<name>cybolt-plataforma-layer</name>
+	<name>CYBOLT PLATFORM LAYER API</name>
 	<!-- 
 		estructura: cybolt-{plataform}-{layer}
 		platforms: Plataforma a la que se conectara: Salesforce, Sap, Etc
